@@ -1,3 +1,5 @@
+import * as Log from "../utilities/logger";
+
 /**
  * Represents a ride type currently available to be build.
  * Shamelessly stolen from Bassiiie
@@ -10,6 +12,7 @@ export default class RideType {
   constructor(
     readonly id: number,
     readonly name: string,
+    readonly identifier: string,
     readonly ratio: number) {
   }
 
@@ -27,10 +30,11 @@ export default class RideType {
     return context
       .getAllObjects("ride")
       .map(r => {
-        const matchingRideTypes = this.ratioMap.filter(m => m[0] === r.name);
+        const matchingRideTypes = this.ratioMap.filter(m => m[0] === r.identifier);
         if (matchingRideTypes.length === 1) {
           const ratio = matchingRideTypes[0][1];
-          return new RideType(r.index, r.name, ratio);
+          Log.debug(`Found ride ${r.name} with id ${r.identifier} of index ${r.index}`);
+          return new RideType(r.index, r.name, r.identifier, ratio);
         } else {
           return null;
         }
@@ -38,14 +42,13 @@ export default class RideType {
       .filter(r => r !== null && r.ratio > 0);
   }
 
-  // Only works in English. Must find another solution.
   static ratioMap: object[] = [
-    ["Sports Cars", 35],
-    ["Pickup Trucks", 30],
-    ["Automobile Cars", 15],
-    ["Monster Trucks", 10],
-    ["Vintage Cars", 5],
-    ["Racing Cars", 4],
-    ["Soap Boxes", 1],
+    ["rct2.ride.spcar", 35], // Sports Cars
+    ["rct2.ride.truck1", 30], // Pickup Trucks
+    ["rct2.ride.wcatc", 15], // Automobile Cars
+    ["rct2.ride.4x4", 10], // Monster Trucks
+    ["rct2.ride.vcr", 5], // Vintage Cars
+    ["rct2.ride.rcr", 4], // Racing Cars
+    ["rct2.ride.sbox", 1], // Soap Boxes
   ];
 }
