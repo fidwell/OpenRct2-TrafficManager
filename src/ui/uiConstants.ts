@@ -3,7 +3,7 @@ export default class UiConstants {
   static margin: number = 10;
   static tabSize: number = 30;
   static toolbarHeight: number = 10;
-  static labelHeight: number = 14;
+  static widgetLineHeight: number = 14;
 
   static fullWidthWidget(): number {
     return UiConstants.windowWidth - UiConstants.margin * 2;
