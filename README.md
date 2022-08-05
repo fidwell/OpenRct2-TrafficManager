@@ -8,15 +8,31 @@ This plugin works ideally on a ride that has several trains, each with one car. 
 
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
-* Sports cars (rct2.ride.spcar)
-* Pickup trucks (rct2.ride.truck1)
-* Automobile cars (rct2.ride.wcatc)
-* Monster trucks (rct2.ride.4x4)
-* Vintage cars (rct2.ride.vcr)
-* Racing cars (rct2.ride.rcr)
-* Soap boxes (rct2.ride.sbox)
+* Monster Trucks (rct2.ride.4x4)
+* Bumper Cars (rct2.ride.dodg1)
+* Go (rct2.ride.kart1)-Karts
+* Bicycles (rct2.ride.monbk)
+* Racing Cars (rct2.ride.rcr)
+* Soap Boxes (rct2.ride.sbox)
+* Sports Cars (rct2.ride.spcar)
+* Pickup Trucks (rct2.ride.truck1)
+* Vintage Cars (rct2.ride.vcr)
+* Automobile Cars (rct2.ride.wcatc)
+* 1920s Racing Cars (rct2tt.ride.1920racr)
+* Gangster Cars (rct2tt.ride.ganstrcr)
+* Hot Rod Trains (rct2tt.ride.hotrodxx)
+* Police Car Trains (rct2tt.ride.polchase)
+* Police Cars (rct2tt.ride.policecr)
+* School Bus Trams (rct2tt.ride.schoolbs)
+* Black Cabs (rct2ww.ride.blackcab)
+* Limousine Trains (rct2ww.ride.caddilac)
+* Routemaster Buses (rct2ww.ride.londonbs)
+* Trabant Cars (rct2ww.ride.rssncrrd)
+* Yellow Taxi Trains (rct2ww.ride.taxicstr)
 
 When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the color of each vehicle.
+
+**Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor.
 
 ## Roadmap
 
@@ -26,7 +42,7 @@ Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-Traff
 * **Version 2** (upcoming): Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
 * **Version 3**: Allows the user to select their own vehicle types.
 
-**Other features in consideration**: Better color weights; automatically setting vehicle placement.
+**Other features in consideration**: Better color weights that take vehicle type into consideration; automatically setting vehicle placement.
 
 ## Installation
 
