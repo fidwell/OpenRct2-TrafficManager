@@ -1,7 +1,7 @@
-import ParkRide from "./objects/parkRide";
-import RideType from "./objects/rideType";
-import WeightsRandomizer from "./utilities/weightsRandomizer";
-import WeightDictionary from "./objects/weightDictionary";
+import ParkRide from "../objects/parkRide";
+import RideType from "../objects/rideType";
+import WeightsRandomizer from "./weightsRandomizer";
+import WeightDictionary from "../objects/weightDictionary";
 
 export default class Transformer {
   static go(ride: ParkRide, rideTypes: RideType[]): void {

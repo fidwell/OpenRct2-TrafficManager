@@ -1,7 +1,7 @@
 import * as Environment from "../environment";
 import * as Log from "../utilities/logger";
 import ParkRide from "../objects/parkRide";
-import Transformer from "../transformer";
+import Transformer from "../services/transformer";
 import UiConstants from "./uiConstants";
 import RideType from "../objects/rideType";
 
