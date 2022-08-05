@@ -30,7 +30,7 @@ Select the ride you want to modify from the drop-down list. The plugin window wi
 * Trabant Cars (rct2ww.ride.rssncrrd)
 * Yellow Taxi Trains (rct2ww.ride.taxicstr)
 
-When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the color of each vehicle.
+When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the colour of each vehicle.
 
 **Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor.
 
@@ -42,7 +42,11 @@ Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-Traff
 * **Version 2** (upcoming): Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
 * **Version 3**: Allows the user to select their own vehicle types.
 
-**Other features in consideration**: Better color weights that take vehicle type into consideration; automatically setting vehicle placement.
+**Other features in consideration**: Better colour weights that take vehicle type into consideration; automatically setting vehicle placement.
+
+### Known issues
+
+If you adjust a vehicle's colour with the ride window after using this plugin, all other vehicle colours will be reset. This is because I'm not using game actions to set car colours, but I really ought to.
 
 ## Installation
 
