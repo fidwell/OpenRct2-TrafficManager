@@ -1,5 +1,5 @@
 {
-  "name": "openrct2-ParkedCars",
+  "name": "openrct2-TrafficManager",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fidwell/OpenRct2-ParkedCars.git"
+    "url": "git+https://github.com/fidwell/OpenRct2-TrafficManager.git"
   },
   "author": "fidwell",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fidwell/OpenRct2-ParkedCars/issues"
+    "url": "https://github.com/fidwell/OpenRct2-TrafficManager/issues"
   },
-  "homepage": "https://github.com/fidwell/OpenRct2-ParkedCars#readme",
+  "homepage": "https://github.com/fidwell/OpenRct2-TrafficManager#readme",
   "devDependencies": {
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-typescript": "^8.2.0",

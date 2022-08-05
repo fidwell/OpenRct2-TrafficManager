@@ -5,7 +5,7 @@ import { terser } from "rollup-plugin-terser";
 export default {
   input: "./src/registerPlugin.ts",
   output: {
-    file: "./dist/ParkedCars.js",
+    file: "./dist/TrafficManager.js",
     format: "iife",
   },
   plugins: [

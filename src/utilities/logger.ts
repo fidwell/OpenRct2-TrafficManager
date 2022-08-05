@@ -9,7 +9,7 @@ type LogLevel = "debug" | "warning" | "error";
  * Prints a message with the specified logging and plugin identifier.
  */
 function print(level: LogLevel, color: number, message: string): void {
-  console.log(`[${color}m<ParkedCars-${level}>[0m ${message}`); // eslint-disable-line
+  console.log(`[${color}m<TrafficManager-${level}>[0m ${message}`); // eslint-disable-line
 }
 
 export function debug(message: string): void {
