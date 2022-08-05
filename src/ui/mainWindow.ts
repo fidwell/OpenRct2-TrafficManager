@@ -3,6 +3,7 @@ import * as Log from "../utilities/logger";
 import ParkRide from "../objects/parkRide";
 import Transformer from "../transformer";
 import UiConstants from "./uiConstants";
+import RideType from "../objects/rideType";
 
 export default class MainWindow {
   onUpdate?: () => void;
@@ -13,6 +14,7 @@ export default class MainWindow {
 
   private ridesInPark: ParkRide[];
   private selectedRide: ParkRide;
+  private rideTypes: RideType[];
 
   private createWindow(): Window {
     this.ridesInPark = ParkRide.getAllRides();
@@ -35,15 +37,36 @@ export default class MainWindow {
       }
     };
 
+    this.rideTypes = RideType.getAvailableTypes();
+
+    const carListBox: GroupBoxWidget = {
+      type: "groupbox",
+      x: UiConstants.margin,
+      y: ridesList.y + ridesList.height + UiConstants.margin,
+      width: UiConstants.fullWidthWidget(),
+      height: UiConstants.widgetLineHeight * this.rideTypes.length + UiConstants.margin * 2.5,
+      tooltip: "List of rides in the park",
+      text: "Car type ratios"
+    };
+
+    const carListGroup: WidgetBase[] = this.rideTypes.map((t, i) => <LabelWidget>{
+      type: "label",
+      x: carListBox.x + UiConstants.margin,
+      y: carListBox.y + 2 * UiConstants.margin + i * UiConstants.widgetLineHeight,
+      width: UiConstants.fullWidthWidget() - 2 * UiConstants.margin,
+      height: UiConstants.widgetLineHeight,
+      text: `${t.name}: ${t.ratio}%`
+    });
+
     const goButton: ButtonWidget = {
       type: "button",
       x: UiConstants.margin,
-      y: ridesList.y + ridesList.height,
+      y: carListBox.y + carListBox.height + UiConstants.margin,
       width: UiConstants.fullWidthWidget(),
-      height: 100,
+      height: UiConstants.widgetLineHeight * 2,
       text: "Go",
       onClick: () => {
-        Transformer.go(this.selectedRide);
+        Transformer.go(this.selectedRide, this.rideTypes);
       }
     };
 
@@ -54,6 +77,8 @@ export default class MainWindow {
       height: goButton.y + goButton.height + UiConstants.margin,
       widgets: [
         ridesList,
+        carListBox,
+        ...carListGroup,
         goButton
       ],
       onUpdate: () => {

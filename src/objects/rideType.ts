@@ -6,14 +6,12 @@ export default class RideType {
   /**
    * @param id The index of the loaded ride definition object.
    * @param name The name of the ride type.
-   * @param variantCount The amount of different variants (vehicle sprites) this ride has.
    */
   constructor(
     readonly id: number,
     readonly name: string,
-    readonly variantCount: number
-  ) { }
-
+    readonly ratio: number) {
+  }
 
   /*
    * Gets the associated ride defintion from the game.
@@ -22,21 +20,32 @@ export default class RideType {
     return context.getObject("ride", this.id);
   }
 
-
   /**
    * Gets all available ride types that are currently loaded.
    */
   static getAvailableTypes(): RideType[] {
     return context
       .getAllObjects("ride")
-      .filter(r => r.carsPerFlatRide !== 0) // tracked rides == 255, flatrides >= 1, shops == 0
-      .map(r => new RideType(
-        r.index,
-        r.name,
-        r.vehicles
-          .filter(v => v.baseImageId > 0)
-          .length
-      ))
-      .sort((a, b) => a.name.localeCompare(b.name));
+      .map(r => {
+        const matchingRideTypes = this.ratioMap.filter(m => m[0] === r.name);
+        if (matchingRideTypes.length === 1) {
+          const ratio = matchingRideTypes[0][1];
+          return new RideType(r.index, r.name, ratio);
+        } else {
+          return null;
+        }
+      })
+      .filter(r => r !== null && r.ratio > 0);
   }
+
+  // Only works in English. Must find another solution.
+  static ratioMap: object[] = [
+    ["Sports Cars", 35],
+    ["Pickup Trucks", 30],
+    ["Automobile Cars", 15],
+    ["Monster Trucks", 10],
+    ["Vintage Cars", 5],
+    ["Racing Cars", 4],
+    ["Soap Boxes", 1],
+  ];
 }
