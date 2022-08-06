@@ -37,7 +37,6 @@ export default class RideType {
 
   static weightMap: object[] = [
     ["rct2.ride.4x4", 6], // Monster Trucks
-    ["rct2.ride.dodg1", 1], // Bumper Cars
     ["rct2.ride.kart1", 1], // Go-Karts
     ["rct2.ride.monbk", 1], // Bicycles
     ["rct2.ride.rcr", 4], // Racing Cars

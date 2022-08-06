@@ -9,7 +9,6 @@ This plugin works ideally on a ride that has several trains, each with one car. 
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
 * Monster Trucks (rct2.ride.4x4)
-* Bumper Cars (rct2.ride.dodg1)
 * Go (rct2.ride.kart1)-Karts
 * Bicycles (rct2.ride.monbk)
 * Racing Cars (rct2.ride.rcr)
@@ -43,10 +42,6 @@ Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-Traff
 * **Version 3**: Allows the user to select their own vehicle types.
 
 **Other features in consideration**: Better colour weights that take vehicle type into consideration; automatically setting vehicle placement.
-
-### Known issues
-
-If you adjust a vehicle's colour with the ride window after using this plugin, all other vehicle colours will be reset. This is because I'm not using game actions to set car colours, but I really ought to.
 
 ## Installation
 
