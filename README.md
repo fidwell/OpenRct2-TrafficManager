@@ -36,8 +36,6 @@ When you click "Go", the plugin will randomize the type of vehicle, selecting fr
 
 ### Troubleshooting
 
-**The ride I want to edit isn't in the dropdown!** It's been filtered out because it only has one train. This was intended to make "traffic" rides easier to find, but if that's an issue, it can be adjusted.
-
 **There are a bunch of vehicles missing from the plugin!** The plugin can only use vehicle types that are included in your map. Use the object selection tool to add the vehicles you'd like.
 
 ## Roadmap
