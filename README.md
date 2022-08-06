@@ -2,6 +2,8 @@
 
 This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble more realistic traffic.
 
+![traffic-manager-demo](https://user-images.githubusercontent.com/5436387/183231083-5966d9c8-e745-4b65-998d-d62213fd81c2.gif)
+
 ## Usage
 
 This plugin works ideally on a ride that has several trains, each with one car. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
