@@ -13,7 +13,7 @@ If the ride you are trying to edit doesn't appear in the dropdown, it's been fil
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
 * Monster Trucks (rct2.ride.4x4)
-* Go (rct2.ride.kart1)-Karts
+* Go-Karts (rct2.ride.kart1)
 * Bicycles (rct2.ride.monbk)
 * Racing Cars (rct2.ride.rcr)
 * Soap Boxes (rct2.ride.sbox)
@@ -34,7 +34,7 @@ Select the ride you want to modify from the drop-down list. The plugin window wi
 
 When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the colour of each vehicle.
 
-**Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor.
+**Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor. Some of the supported vehicles have their weights set to 0 because they look terrible, but if you'd like to include them anyway, editing the plugin weights will do it.
 
 ## Roadmap
 
