@@ -6,15 +6,15 @@ import ColourMap from "./colourMap";
 
 export default class Transformer {
   static go(ride: ParkRide, rideTypes: RideType[]): void {
-    const rideRandomizer = new WeightsRandomizer(rideTypes.map(t => new WeightDictionary(t.id, t.ratio)));
+    const rideRandomizer = new WeightsRandomizer(rideTypes.map((t) => new WeightDictionary(t.id, t.ratio)));
     const primaryColourRandomizer = new WeightsRandomizer(ColourMap.primaryColours);
     const secondaryColourRandomizer = new WeightsRandomizer(ColourMap.secondaryColours);
 
     const trains = ride.getTrains();
-    for (let t = 0; t < trains.length; t++) {
+    for (let t = 0; t < trains.length; t += 1) {
       const vehicles = trains[t].getVehicles();
 
-      for (let v = 0; v < vehicles.length; v++) {
+      for (let v = 0; v < vehicles.length; v += 1) {
         const car: Car = vehicles[v].getCar();
         car.colours = <VehicleColour>{
           body: primaryColourRandomizer.getRandomValue(),

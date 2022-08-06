@@ -1,10 +1,14 @@
 import RideTrain from "./rideTrain";
 
 export default class ParkRide {
-  constructor(
-    readonly rideId: number,
-    readonly name: string
-  ) { }
+  readonly rideId: number;
+
+  readonly name: string;
+
+  constructor(rideId: number, name: string) {
+    this.rideId = rideId;
+    this.name = name;
+  }
 
   getRideData(): Ride {
     return map.getRide(this.rideId);
@@ -19,9 +23,9 @@ export default class ParkRide {
 
   static getAllRides(): ParkRide[] {
     return map.rides
-      .filter(r => r.classification === "ride")
-      .filter(r => r.vehicles.length > 1)
+      .filter((r) => r.classification === "ride")
+      .filter((r) => r.vehicles.length > 1)
       .sort((a, b) => a.name.localeCompare(b.name))
-      .map(r => new ParkRide(r.id, r.name));
+      .map((r) => new ParkRide(r.id, r.name));
   }
 }

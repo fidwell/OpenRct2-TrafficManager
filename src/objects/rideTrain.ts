@@ -2,17 +2,21 @@ import RideVehicle from "./rideVehicle";
 import * as Log from "../utilities/logger";
 
 export default class RideTrain {
-  constructor(
-    readonly index: number,
-    readonly headCarId: number
-  ) { }
+  readonly index: number;
+
+  readonly headCarId: number;
+
+  constructor(index: number, headCarId: number) {
+    this.index = index;
+    this.headCarId = headCarId;
+  }
 
   getVehicles(): RideVehicle[] {
     const vehicles: RideVehicle[] = [];
     let currentId: (number | null) = this.headCarId;
 
-    while (currentId != null && currentId != 0xFFFF) {
-      const vehicle = this.getCarEntity(currentId);
+    while (currentId !== null && currentId !== 0xFFFF) {
+      const vehicle = RideTrain.getCarEntity(currentId);
       if (!vehicle) {
         break;
       }
@@ -23,7 +27,7 @@ export default class RideTrain {
     return vehicles;
   }
 
-  private getCarEntity(carId: number): (Car | null) {
+  private static getCarEntity(carId: number): (Car | null) {
     const entity = map.getEntity(carId);
     if (!entity) {
       Log.error(`(train) Entity ${carId} could not be found.`);

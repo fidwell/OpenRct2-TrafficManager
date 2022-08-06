@@ -1,5 +1,4 @@
 import * as Environment from "../environment";
-import * as Log from "../utilities/logger";
 import ParkRide from "../objects/parkRide";
 import Transformer from "../services/transformer";
 import UiConstants from "./uiConstants";
@@ -13,13 +12,15 @@ export default class MainWindow {
   private window?: Window;
 
   private ridesInPark: ParkRide[];
+
   private selectedRide: ParkRide;
+
   private rideTypes: RideType[];
 
   private createWindow(): Window {
     this.ridesInPark = ParkRide.getAllRides();
     if (this.ridesInPark.length > 0) {
-      this.selectedRide = this.ridesInPark[0];
+      [this.selectedRide] = this.ridesInPark;
     }
 
     const ridesList: DropdownWidget = {
@@ -29,7 +30,7 @@ export default class MainWindow {
       width: UiConstants.fullWidthWidget(),
       height: UiConstants.widgetLineHeight,
       tooltip: "List of rides in the park",
-      items: this.ridesInPark.map(r => Environment.isDevelopment ? `[${r.rideId}] ${r.name}` : r.name),
+      items: this.ridesInPark.map((r) => (Environment.isDevelopment ? `[${r.rideId}] ${r.name}` : r.name)),
       onChange: (i) => {
         if (this.ridesInPark.length >= i) {
           this.selectedRide = this.ridesInPark[i];

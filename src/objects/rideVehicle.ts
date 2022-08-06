@@ -1,5 +1,9 @@
 export default class RideVehicle {
-  constructor(readonly entityId: number) { }
+  readonly entityId: number;
+
+  constructor(entityId: number) {
+    this.entityId = entityId;
+  }
 
   getCar(): Car {
     return map.getEntity(this.entityId) as Car;

@@ -1,45 +1,38 @@
 import * as Log from "../utilities/logger";
 
-/**
- * Represents a ride type currently available to be build.
- * Shamelessly stolen from Bassiiie
- */
 export default class RideType {
-  /**
-   * @param id The index of the loaded ride definition object.
-   * @param name The name of the ride type.
-   */
-  constructor(
-    readonly id: number,
-    readonly name: string,
-    readonly identifier: string,
-    readonly ratio: number) {
+  readonly id: number;
+
+  readonly name: string;
+
+  readonly identifier: string;
+
+  readonly ratio: number;
+
+  constructor(id: number, name: string, identifier: string, ratio: number) {
+    this.id = id;
+    this.name = name;
+    this.identifier = identifier;
+    this.ratio = ratio;
   }
 
-  /*
-   * Gets the associated ride defintion from the game.
-   */
   getDefinition(): RideObject {
     return context.getObject("ride", this.id);
   }
 
-  /**
-   * Gets all available ride types that are currently loaded.
-   */
   static getAvailableTypes(): RideType[] {
     return context
       .getAllObjects("ride")
-      .map(r => {
-        const matchingRideTypes = this.ratioMap.filter(m => m[0] === r.identifier);
+      .map((r) => {
+        const matchingRideTypes = this.ratioMap.filter((m) => m[0] === r.identifier);
         if (matchingRideTypes.length === 1) {
           const ratio = matchingRideTypes[0][1];
           Log.debug(`Found ride ${r.name} with id ${r.identifier} of index ${r.index}`);
           return new RideType(r.index, r.name, r.identifier, ratio);
-        } else {
-          return null;
         }
+        return null;
       })
-      .filter(r => r !== null && r.ratio > 0);
+      .filter((r) => r !== null && r.ratio > 0);
   }
 
   static ratioMap: object[] = [
