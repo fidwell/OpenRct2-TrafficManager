@@ -46,8 +46,7 @@ export default class MainWindow {
       y: ridesList.y + ridesList.height + UiConstants.margin,
       width: UiConstants.fullWidthWidget(),
       height: UiConstants.widgetLineHeight * this.rideTypes.length + UiConstants.margin * 2.5,
-      tooltip: "List of rides in the park",
-      text: "Car type ratios"
+      text: "Car type weights"
     };
 
     const carListGroup: WidgetBase[] = this.rideTypes.map((t, i) => <LabelWidget>{
@@ -56,7 +55,7 @@ export default class MainWindow {
       y: carListBox.y + 2 * UiConstants.margin + i * UiConstants.widgetLineHeight,
       width: UiConstants.fullWidthWidget() - 2 * UiConstants.margin,
       height: UiConstants.widgetLineHeight,
-      text: `${t.name}: ${t.ratio}%`
+      text: `${t.name}: ${t.weight}`
     });
 
     const goButton: ButtonWidget = {

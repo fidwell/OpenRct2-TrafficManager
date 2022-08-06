@@ -7,13 +7,13 @@ export default class RideType {
 
   readonly identifier: string;
 
-  readonly ratio: number;
+  readonly weight: number;
 
-  constructor(id: number, name: string, identifier: string, ratio: number) {
+  constructor(id: number, name: string, identifier: string, weight: number) {
     this.id = id;
     this.name = name;
     this.identifier = identifier;
-    this.ratio = ratio;
+    this.weight = weight;
   }
 
   getDefinition(): RideObject {
@@ -24,18 +24,18 @@ export default class RideType {
     return context
       .getAllObjects("ride")
       .map((r) => {
-        const matchingRideTypes = this.ratioMap.filter((m) => m[0] === r.identifier);
+        const matchingRideTypes = this.weightMap.filter((m) => m[0] === r.identifier);
         if (matchingRideTypes.length === 1) {
-          const ratio = matchingRideTypes[0][1];
+          const weight = matchingRideTypes[0][1];
           Log.debug(`Found ride ${r.name} with id ${r.identifier} of index ${r.index}`);
-          return new RideType(r.index, r.name, r.identifier, ratio);
+          return new RideType(r.index, r.name, r.identifier, weight);
         }
         return null;
       })
-      .filter((r) => r !== null && r.ratio > 0);
+      .filter((r) => r !== null && r.weight > 0);
   }
 
-  static ratioMap: object[] = [
+  static weightMap: object[] = [
     ["rct2.ride.4x4", 6], // Monster Trucks
     ["rct2.ride.dodg1", 1], // Bumper Cars
     ["rct2.ride.kart1", 1], // Go-Karts
