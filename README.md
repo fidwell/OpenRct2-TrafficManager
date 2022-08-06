@@ -8,8 +8,6 @@ This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble 
 
 This plugin works ideally on a ride that has several trains, each with any number of cars. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
 
-If the ride you are trying to edit doesn't appear in the dropdown, it's been filtered out because it only has one train. This was intended to make "traffic" rides easier to find, but if that's an issue, it can be adjusted.
-
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
 * Monster Trucks (rct2.ride.4x4)
@@ -35,6 +33,12 @@ Select the ride you want to modify from the drop-down list. The plugin window wi
 When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the colour of each vehicle.
 
 **Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor. Some of the supported vehicles have their weights set to 0 because they look terrible, but if you'd like to include them anyway, editing the plugin weights will do it.
+
+### Troubleshooting
+
+**The ride I want to edit isn't in the dropdown!** It's been filtered out because it only has one train. This was intended to make "traffic" rides easier to find, but if that's an issue, it can be adjusted.
+
+**There are a bunch of vehicles missing from the plugin!** The plugin can only use vehicle types that are included in your map. Use the object selection tool to add the vehicles you'd like.
 
 ## Roadmap
 
