@@ -46,15 +46,14 @@ export default class RideType {
     ["rct2.ride.vcr", 4], // Vintage Cars
     ["rct2.ride.wcatc", 15], // Automobile Cars
     ["rct2tt.ride.1920racr", 1], // 1920s Racing Cars
-    ["rct2tt.ride.ganstrcr", 1], // Gangster Cars
-    ["rct2tt.ride.hotrodxx", 1], // Hot Rod Trains
+    ["rct2tt.ride.ganstrcr", 0], // Gangster Cars
     ["rct2tt.ride.polchase", 1], // Police Car Trains
     ["rct2tt.ride.policecr", 1], // Police Cars
     ["rct2tt.ride.schoolbs", 1], // School Bus Trams
     ["rct2ww.ride.blackcab", 1], // Black Cabs
-    ["rct2ww.ride.caddilac", 1], // Limousine Trains
+    ["rct2ww.ride.caddilac", 0], // Limousine Trains
     ["rct2ww.ride.londonbs", 1], // Routemaster Buses
     ["rct2ww.ride.rssncrrd", 5], // Trabant Cars
-    ["rct2ww.ride.taxicstr", 1], // Yellow Taxi Trains
+    ["rct2ww.ride.taxicstr", 0], // Yellow Taxi Trains
   ];
 }

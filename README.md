@@ -19,7 +19,6 @@ Select the ride you want to modify from the drop-down list. The plugin window wi
 * Automobile Cars (rct2.ride.wcatc)
 * 1920s Racing Cars (rct2tt.ride.1920racr)
 * Gangster Cars (rct2tt.ride.ganstrcr)
-* Hot Rod Trains (rct2tt.ride.hotrodxx)
 * Police Car Trains (rct2tt.ride.polchase)
 * Police Cars (rct2tt.ride.policecr)
 * School Bus Trams (rct2tt.ride.schoolbs)

@@ -41,12 +41,12 @@ export default class Transformer {
     Transformer.setColour(rideId, carIndex, RideSetAppearanceType.VehicleColourTernary, tertiaryColour);
   }
 
-  static setColour(rideId: number, carIndex: number, type: number, colour: number) {
+  static setColour(ride: number, index: number, type: number, colour: number) {
     context.executeAction("ridesetappearance", {
-      ride: rideId,
-      type: type,
+      ride,
+      type,
       value: colour,
-      index: carIndex,
+      index,
       flags: 0
     });
   }

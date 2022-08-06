@@ -1,15 +1,9 @@
 // From RideSetAppearanceAction.h in OpenRCT2.
+// Unneeded types omitted.
 
 export enum RideSetAppearanceType
 {
-  TrackColourMain,
-  TrackColourAdditional,
-  TrackColourSupports,
-  MazeStyle = TrackColourSupports,
-  VehicleColourBody,
-  VehicleColourTrim,
-  VehicleColourTernary,
-  VehicleColourScheme,
-  EntranceStyle,
-  SellingItemColourIsRandom
-};
+  VehicleColourBody = 3,
+  VehicleColourTrim = 4,
+  VehicleColourTernary = 5
+}
