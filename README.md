@@ -6,7 +6,9 @@ This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble 
 
 ## Usage
 
-This plugin works ideally on a ride that has several trains, each with one car. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
+This plugin works ideally on a ride that has several trains, each with any number of cars. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
+
+If the ride you are trying to edit doesn't appear in the dropdown, it's been filtered out because it only has one train. This was intended to make "traffic" rides easier to find, but if that's an issue, it can be adjusted.
 
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
