@@ -8,6 +8,8 @@ This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble 
 
 This plugin works ideally on a ride that has several trains, each with any number of cars. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
 
+First, ensure the ride you want to color is set to "Different colors per car" (or "Different colors per vehicle", depending on your setup). The plugin does not change this for you; without it, all the cars will be the same color.
+
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
 * Monster Trucks (rct2.ride.4x4)
