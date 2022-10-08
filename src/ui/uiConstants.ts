@@ -1,5 +1,5 @@
 export default class UiConstants {
-  static windowWidth: number = 200;
+  static windowWidth: number = 300;
 
   static margin: number = 10;
 

@@ -7,7 +7,7 @@ export default class RideType {
 
   readonly identifier: string;
 
-  readonly weight: number;
+  weight: number;
 
   constructor(id: number, name: string, identifier: string, weight: number) {
     this.id = id;

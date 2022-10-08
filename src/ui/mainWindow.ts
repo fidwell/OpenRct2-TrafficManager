@@ -49,13 +49,33 @@ export default class MainWindow {
       text: "Car type weights"
     };
 
-    const carListGroup: WidgetBase[] = this.rideTypes.map((t, i) => <LabelWidget>{
-      type: "label",
-      x: carListBox.x + UiConstants.margin,
-      y: carListBox.y + 2 * UiConstants.margin + i * UiConstants.widgetLineHeight,
-      width: UiConstants.fullWidthWidget() - 2 * UiConstants.margin,
-      height: UiConstants.widgetLineHeight,
-      text: `${t.name}: ${t.weight}`
+    const carListGroup: WidgetBase[] = [];
+
+    this.rideTypes.forEach((t: RideType, i: number) => {
+      const widgetWidth: number = UiConstants.halfWidthWidget() - 2 * UiConstants.margin;
+      const y: number = carListBox.y + 2 * UiConstants.margin + i * UiConstants.widgetLineHeight;
+
+      carListGroup.push(<LabelWidget>{
+        type: "label",
+        name: `rideTypeLabel${i}`,
+        x: carListBox.x + UiConstants.margin,
+        y: y,
+        width: widgetWidth,
+        height: UiConstants.widgetLineHeight,
+        text: t.name
+      });
+
+      carListGroup.push(<SpinnerWidget>{
+        type: "spinner",
+        name: `rideTypeWeight${i}`,
+        x: carListBox.x + widgetWidth + UiConstants.margin,
+        y: y,
+        width: widgetWidth,
+        height: UiConstants.widgetLineHeight,
+        text: t.weight.toString(),
+        onIncrement: () => this.updateWeight(i, 1),
+        onDecrement: () => this.updateWeight(i, -1)
+      });
     });
 
     const goButton: ButtonWidget = {
@@ -106,5 +126,20 @@ export default class MainWindow {
 
   static close(): void {
     ui.closeWindows(Environment.namespace);
+  }
+
+  private updateWeight(index: number, amount: number): void {
+    this.rideTypes[index].weight += amount;
+
+    // Clamp
+    if (this.rideTypes[index].weight < 0) {
+      this.rideTypes[index].weight = 0;
+    }
+
+    if (this.rideTypes[index].weight > 255) {
+      this.rideTypes[index].weight = 255;
+    }
+
+    this.window.findWidget<SpinnerWidget>(`rideTypeWeight${index}`).text = this.rideTypes[index].weight.toString();
   }
 }
