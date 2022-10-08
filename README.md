@@ -8,46 +8,52 @@ This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble 
 
 This plugin works ideally on a ride that has several trains, each with any number of cars. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
 
-First, ensure the ride you want to color is set to "Different colors per car" (or "Different colors per vehicle", depending on your setup). The plugin does not change this for you; without it, all the cars will be the same color.
+If you want the colors to properly randomize, set the color dropdown in the ride window to "Different colors per car".
 
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
-* Monster Trucks (rct2.ride.4x4)
-* Bicycles (rct2.ride.monbk)
-* Racing Cars (rct2.ride.rcr)
-* Soap Boxes (rct2.ride.sbox)
-* Sports Cars (rct2.ride.spcar)
-* Pickup Trucks (rct2.ride.truck1)
-* Vintage Cars (rct2.ride.vcr)
-* Automobile Cars (rct2.ride.wcatc)
-* 1920s Racing Cars (rct2tt.ride.1920racr)
-* Gangster Cars (rct2tt.ride.ganstrcr)
-* Police Car Trains (rct2tt.ride.polchase)
-* Police Cars (rct2tt.ride.policecr)
-* School Bus Trams (rct2tt.ride.schoolbs)
-* Black Cabs (rct2ww.ride.blackcab)
-* Limousine Trains (rct2ww.ride.caddilac)
-* Routemaster Buses (rct2ww.ride.londonbs)
-* Trabant Cars (rct2ww.ride.rssncrrd)
-* Yellow Taxi Trains (rct2ww.ride.taxicstr)
+- Monster Trucks (rct2.ride.4x4)
+- Bicycles (rct2.ride.monbk)
+- Racing Cars (rct2.ride.rcr)
+- Soap Boxes (rct2.ride.sbox)
+- Sports Cars (rct2.ride.spcar)
+- Pickup Trucks (rct2.ride.truck1)
+- Vintage Cars (rct2.ride.vcr)
+- Automobile Cars (rct2.ride.wcatc)
+- 1920s Racing Cars (rct2tt.ride.1920racr)
+- Gangster Cars (rct2tt.ride.ganstrcr)
+- Police Car Trains (rct2tt.ride.polchase)
+- Police Cars (rct2tt.ride.policecr)
+- School Bus Trams (rct2tt.ride.schoolbs)
+- Black Cabs (rct2ww.ride.blackcab)
+- Limousine Trains (rct2ww.ride.caddilac)
+- Routemaster Buses (rct2ww.ride.londonbs)
+- Trabant Cars (rct2ww.ride.rssncrrd)
+- Yellow Taxi Trains (rct2ww.ride.taxicstr)
 
-When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on hard-coded weights (so you will get, for example, about twice as many pickup trucks as automobile cars). The plugin will also randomize the colour of each vehicle.
+When you click "Go", the plugin will randomize the type of vehicle, selecting from the list above and weighting based on the weights input by the user. The plugin will also randomize the colour of each vehicle.
 
-**Note**: If you want to manually edit the ride list and weights, it is possible to do so with version 1 by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can modify these values with a text editor. Some of the supported vehicles have their weights set to 0 because they look terrible, but if you'd like to include them anyway, editing the plugin weights will do it.
+**Note**: If you want to manually edit the ride list to add more rides, it is possible to do so by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can add new entries to the array here, as long as you know the internal id of the ride.
 
 ### Troubleshooting
 
-**There are a bunch of vehicles missing from the plugin!** The plugin can only use vehicle types that are included in your map. Use the object selection tool to add the vehicles you'd like.
+**There are a bunch of supported vehicles missing from the plugin!** The plugin can only use vehicle types that are included in your map. Use the object selection tool to add the vehicles you'd like.
 
 ## Roadmap
 
 Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-TrafficManager/issues).
 
-* **Version 1** (this version): Randomizes vehicles based on a hard-coded list of vehicle types and weights.
-* **Version 2** (upcoming): Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
-* **Version 3**: Allows the user to select their own vehicle types.
+### Version history
 
-**Other features in consideration**: Better colour weights that take vehicle type into consideration; automatically setting vehicle placement.
+- **Version 1**: Randomizes vehicles based on a hard-coded list of vehicle types and weights.
+- **Version 2**: Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
+
+### Features in consideration
+
+- Better colour weights that take vehicle type into consideration
+- Customizable colour weights
+- Automatically setting vehicle placement for parking lots (this is probably very hard)
+- Allow the user to select their own vehicle types (in addition to the ones already hard-coded into the plugin)
 
 ## Installation
 
