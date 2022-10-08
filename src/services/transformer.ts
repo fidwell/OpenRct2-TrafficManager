@@ -8,6 +8,11 @@ import { RideSetAppearanceType } from "../enums/rideSetAppearanceType";
 export default class Transformer {
   static go(ride: ParkRide, rideTypes: RideType[]): void {
     const rideRandomizer = new WeightsRandomizer(rideTypes.map((t) => new WeightDictionary(t.id, t.weight)));
+
+    if (!rideRandomizer.canRandomize) {
+      return;
+    }
+
     const primaryColourRandomizer = new WeightsRandomizer(ColourMap.primaryColours);
     const secondaryColourRandomizer = new WeightsRandomizer(ColourMap.secondaryColours);
 

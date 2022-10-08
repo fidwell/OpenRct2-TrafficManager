@@ -4,9 +4,14 @@ import WeightDictionary from "../objects/weightDictionary";
 export default class WeightsRandomizer {
   private readonly weightSum: number;
 
+  public readonly canRandomize: boolean;
+
   constructor(readonly items: WeightDictionary[]) {
     this.weightSum = items.map((a) => a.weight).reduce((a, b) => a + b);
-    if (this.weightSum <= 0) {
+    this.canRandomize = this.weightSum > 0;
+
+    if (!this.canRandomize) {
+      ui.showError("Can't randomize", "Weights must add up to at least 1.");
       Log.error("Weights must add up to at least 1.");
     }
   }
