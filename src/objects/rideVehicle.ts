@@ -9,7 +9,7 @@ export default class RideVehicle {
     return map.getEntity(this.entityId) as Car;
   }
 
-  shouldRandomize(): boolean {
+  shouldRandomizeType(): boolean {
     // Don't randomize invisible vehicles
     // that are used for powered rides.
     // There isn't a great way to determine

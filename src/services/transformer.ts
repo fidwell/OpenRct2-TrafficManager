@@ -24,15 +24,14 @@ export default class Transformer {
 
       for (let v = 0; v < vehicles.length; v += 1) {
         const vehicle = vehicles[v];
+        const car: Car = vehicle.getCar();
 
-        if (vehicle.shouldRandomize()) {
-          const car: Car = vehicle.getCar();
+        Transformer.setVehicleColours(car.ride, carIndex,
+          primaryColourRandomizer.getRandomValue(),
+          secondaryColourRandomizer.getRandomValue(),
+          secondaryColourRandomizer.getRandomValue());
 
-          Transformer.setVehicleColours(ride.rideId, carIndex,
-            primaryColourRandomizer.getRandomValue(),
-            secondaryColourRandomizer.getRandomValue(),
-            secondaryColourRandomizer.getRandomValue());
-
+        if (vehicle.shouldRandomizeType()) {
           const newId: number = rideRandomizer.getRandomValue();
           if (newId >= 0) {
             car.rideObject = newId;
