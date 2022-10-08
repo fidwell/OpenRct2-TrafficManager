@@ -59,7 +59,7 @@ export default class MainWindow {
         type: "label",
         name: `rideTypeLabel${i}`,
         x: carListBox.x + UiConstants.margin,
-        y: y,
+        y,
         width: widgetWidth,
         height: UiConstants.widgetLineHeight,
         text: t.name
@@ -69,7 +69,7 @@ export default class MainWindow {
         type: "spinner",
         name: `rideTypeWeight${i}`,
         x: carListBox.x + widgetWidth + UiConstants.margin,
-        y: y,
+        y,
         width: widgetWidth,
         height: UiConstants.widgetLineHeight,
         text: t.weight.toString(),
