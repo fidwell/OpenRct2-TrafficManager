@@ -13,7 +13,6 @@ First, ensure the ride you want to color is set to "Different colors per car" (o
 Select the ride you want to modify from the drop-down list. The plugin window will appear, showing which vehicle types are supported in your map. The currently-supported vehicle types are:
 
 * Monster Trucks (rct2.ride.4x4)
-* Go-Karts (rct2.ride.kart1)
 * Bicycles (rct2.ride.monbk)
 * Racing Cars (rct2.ride.rcr)
 * Soap Boxes (rct2.ride.sbox)
