@@ -4,9 +4,10 @@ import WeightsRandomizer from "./weightsRandomizer";
 import WeightDictionary from "../objects/weightDictionary";
 import ColourMap from "./colourMap";
 import { RideSetAppearanceType } from "../enums/rideSetAppearanceType";
+import NormalRandomizer from "./normalRandomizer";
 
 export default class Transformer {
-  static go(ride: ParkRide, rideTypes: RideType[]): void {
+  static go(ride: ParkRide, rideTypes: RideType[], speedMedian: number, speedVariance: number): void {
     const rideRandomizer = new WeightsRandomizer(rideTypes.map((t) => new WeightDictionary(t.id, t.weight)));
 
     if (!rideRandomizer.canRandomize) {
@@ -17,28 +18,38 @@ export default class Transformer {
     const secondaryColourRandomizer = new WeightsRandomizer(ColourMap.secondaryColours);
 
     const trains = ride.getTrains();
-    let carIndex = 0;
+    let paintIndex = 0;
 
     for (let t = 0; t < trains.length; t += 1) {
       const vehicles = trains[t].getVehicles();
+
+      const newPrimaryColour: number = primaryColourRandomizer.getRandomValue();
+      const newSecondaryColour: number = secondaryColourRandomizer.getRandomValue();
+      const newTertiaryColour: number = secondaryColourRandomizer.getRandomValue();
+      const newVehicleType: number = rideRandomizer.getRandomValue();
+      const newSpeed: number = NormalRandomizer.getRandomValue(speedMedian, speedVariance);
 
       for (let v = 0; v < vehicles.length; v += 1) {
         const vehicle = vehicles[v];
         const car: Car = vehicle.getCar();
 
-        Transformer.setVehicleColours(car.ride, carIndex,
-          primaryColourRandomizer.getRandomValue(),
-          secondaryColourRandomizer.getRandomValue(),
-          secondaryColourRandomizer.getRandomValue());
+        if (vehicle.shouldColor()) {
+          Transformer.setVehicleColours(car.ride, paintIndex,
+            newPrimaryColour,
+            newSecondaryColour,
+            newTertiaryColour);
+          paintIndex += 1;
+        }
 
         if (vehicle.shouldRandomizeType()) {
-          const newId: number = rideRandomizer.getRandomValue();
-          if (newId >= 0) {
-            car.rideObject = newId;
+          if (newVehicleType >= 0) {
+            car.rideObject = newVehicleType;
           }
         }
 
-        carIndex += 1;
+        if (vehicle.shouldRandomizeSpeed()) {
+          car.poweredMaxSpeed = newSpeed;
+        }
       }
     }
   }

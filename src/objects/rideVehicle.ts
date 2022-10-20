@@ -19,4 +19,15 @@ export default class RideVehicle {
     const car = this.getCar();
     return car.numSeats !== 0;
   }
+
+  shouldRandomizeSpeed(): boolean {
+    const car = this.getCar();
+    return car.poweredMaxSpeed > 0;
+  }
+
+  shouldColor(): boolean {
+    // There's probably a better way to do this.
+    const car = this.getCar();
+    return car.mass > 0;
+  }
 }

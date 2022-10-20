@@ -1,6 +1,6 @@
 /// <reference path="environment.d.ts" />
 
-export const pluginVersion = "2.0";
+export const pluginVersion = "3.0";
 export const pluginName = "Traffic Manager";
 export const pluginAuthors = ["fidwell"];
 export const buildConfiguration: BuildConfiguration = __BUILD_CONFIGURATION__;

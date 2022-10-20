@@ -17,6 +17,10 @@ export default class MainWindow {
 
   private rideTypes: RideType[];
 
+  private speedMedian: number = 60;
+
+  private speedVariation: number = 0;
+
   private createWindow(): Window {
     this.ridesInPark = ParkRide.getAllRides();
     if (this.ridesInPark.length > 0) {
@@ -78,15 +82,67 @@ export default class MainWindow {
       });
     });
 
+    const speedBox: GroupBoxWidget = {
+      type: "groupbox",
+      x: UiConstants.margin,
+      y: carListBox.y + carListBox.height + UiConstants.margin,
+      width: UiConstants.fullWidthWidget(),
+      height: UiConstants.widgetLineHeight * 2 + UiConstants.margin * 3,
+      text: "Speed options"
+    };
+
+    const speedLabel: LabelWidget = {
+      type: "label",
+      x: speedBox.x + UiConstants.margin,
+      y: speedBox.y + UiConstants.margin * 2,
+      width: UiConstants.halfWidthWidget(),
+      height: UiConstants.widgetLineHeight,
+      text: "Speed:"
+    };
+
+    const speedSpinner: SpinnerWidget = {
+      type: "spinner",
+      name: "speedSpinner",
+      x: speedBox.x + UiConstants.halfWidthWidget() - 2 * UiConstants.margin * 2,
+      y: speedLabel.y,
+      width: UiConstants.halfWidthWidget(),
+      height: UiConstants.widgetLineHeight,
+      text: "60",
+      onIncrement: () => this.updateSpeed(2),
+      onDecrement: () => this.updateSpeed(-2)
+    };
+
+    const speedVariationLabel: LabelWidget = {
+      type: "label",
+      x: speedBox.x + UiConstants.margin,
+      y: speedLabel.y + UiConstants.widgetLineHeight,
+      width: UiConstants.halfWidthWidget(),
+      height: UiConstants.widgetLineHeight,
+      text: "Variation:"
+    };
+
+    const speedVariationDropdown: DropdownWidget = {
+      type: "dropdown",
+      x: speedSpinner.x,
+      y: speedVariationLabel.y,
+      width: UiConstants.halfWidthWidget(),
+      height: UiConstants.widgetLineHeight,
+      tooltip: "Variation in randomized speeds",
+      items: ["None", "A little bit", "Some", "A lot"],
+      onChange: (i) => {
+        this.speedVariation = i;
+      }
+    };
+
     const goButton: ButtonWidget = {
       type: "button",
       x: UiConstants.margin,
-      y: carListBox.y + carListBox.height + UiConstants.margin,
+      y: speedBox.y + speedBox.height + UiConstants.margin,
       width: UiConstants.fullWidthWidget(),
       height: UiConstants.widgetLineHeight * 2,
       text: "Go",
       onClick: () => {
-        Transformer.go(this.selectedRide, this.rideTypes);
+        Transformer.go(this.selectedRide, this.rideTypes, this.speedMedian, this.speedVariation);
       }
     };
 
@@ -99,6 +155,11 @@ export default class MainWindow {
         ridesList,
         carListBox,
         ...carListGroup,
+        speedBox,
+        speedLabel,
+        speedSpinner,
+        speedVariationLabel,
+        speedVariationDropdown,
         goButton
       ],
       onUpdate: () => {
@@ -141,5 +202,10 @@ export default class MainWindow {
     }
 
     this.window.findWidget<SpinnerWidget>(`rideTypeWeight${index}`).text = this.rideTypes[index].weight.toString();
+  }
+
+  private updateSpeed(amount: number): void {
+    this.speedMedian += amount;
+    this.window.findWidget<SpinnerWidget>("speedSpinner").text = this.speedMedian.toString();
   }
 }
