@@ -2,7 +2,7 @@
 
 This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble more realistic traffic.
 
-![traffic-manager-demo](https://user-images.githubusercontent.com/5436387/183231083-5966d9c8-e745-4b65-998d-d62213fd81c2.gif)
+![traffic-manager-demo-2 0](https://user-images.githubusercontent.com/5436387/194680298-de5515ea-7569-47a7-9c16-b7fc088fb3fb.gif)
 
 ## Usage
 
