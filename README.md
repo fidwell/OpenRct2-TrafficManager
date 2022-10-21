@@ -2,7 +2,7 @@
 
 This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble more realistic traffic.
 
-![traffic-manager-demo-2 0](https://user-images.githubusercontent.com/5436387/194680298-de5515ea-7569-47a7-9c16-b7fc088fb3fb.gif)
+![traffic-manager-demo-3 0](https://user-images.githubusercontent.com/5436387/197081735-29d5a07c-09b0-43bc-ba89-4bbf63281a28.gif)
 
 ## Usage
 
@@ -47,6 +47,7 @@ Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-Traff
 
 - **Version 1**: Randomizes vehicles based on a hard-coded list of vehicle types and weights.
 - **Version 2**: Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
+- **Version 3**: Randomizes the speed of powered vehicles, for moving traffic.
 
 ### Features in consideration
 
