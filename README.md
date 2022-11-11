@@ -34,6 +34,8 @@ When you click "Go", the plugin will randomize the type of vehicle, selecting fr
 
 **Note**: If you want to manually edit the ride list to add more rides, it is possible to do so by editing the .js file directly. Look for (for example) `['rct2.ride.4x4',10]` in the code. This corresponds to the monster trucks with a weight of 10. You can add new entries to the array here, as long as you know the internal id of the ride.
 
+The plugin will also randomize the speed of vechicles, if they're moving (your ride is open or testing). You can specify the average speed for each vehicle, and how much the variation in speed will be randomized. If the variation is set to "None", the vehicles will all go the same exact speed. Increasing the variation will cause some vehicles to go faster or slower. (Note that if you set the variation to "A lot", it can result in some nasty traffic jams!)
+
 ### Troubleshooting
 
 **There are a bunch of supported vehicles missing from the plugin!** The plugin can only use vehicle types that are included in your map. Use the object selection tool to add the vehicles you'd like.
