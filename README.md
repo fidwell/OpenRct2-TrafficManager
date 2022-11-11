@@ -20,7 +20,6 @@ Select the ride you want to modify from the drop-down list. The plugin window wi
 - Pickup Trucks (rct2.ride.truck1)
 - Vintage Cars (rct2.ride.vcr)
 - Automobile Cars (rct2.ride.wcatc)
-- 1920s Racing Cars (rct2tt.ride.1920racr)
 - Gangster Cars (rct2tt.ride.ganstrcr)
 - Police Car Trains (rct2tt.ride.polchase)
 - Police Cars (rct2tt.ride.policecr)

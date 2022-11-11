@@ -44,7 +44,6 @@ export default class RideType {
     ["rct2.ride.truck1", 30], // Pickup Trucks
     ["rct2.ride.vcr", 4], // Vintage Cars
     ["rct2.ride.wcatc", 15], // Automobile Cars
-    ["rct2tt.ride.1920racr", 1], // 1920s Racing Cars
     ["rct2tt.ride.ganstrcr", 0], // Gangster Cars
     ["rct2tt.ride.polchase", 1], // Police Car Trains
     ["rct2tt.ride.policecr", 1], // Police Cars
