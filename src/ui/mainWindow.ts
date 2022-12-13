@@ -27,7 +27,7 @@ export default class MainWindow {
       [this.selectedRide] = this.ridesInPark;
     }
 
-    const ridesList: DropdownWidget = {
+    const ridesList: DropdownDesc = {
       type: "dropdown",
       x: UiConstants.margin,
       y: UiConstants.toolbarHeight + UiConstants.margin,
@@ -44,7 +44,7 @@ export default class MainWindow {
 
     this.rideTypes = RideType.getAvailableTypes();
 
-    const carListBox: GroupBoxWidget = {
+    const carListBox: GroupBoxDesc = {
       type: "groupbox",
       x: UiConstants.margin,
       y: ridesList.y + ridesList.height + UiConstants.margin,
@@ -53,7 +53,7 @@ export default class MainWindow {
       text: "Car type weights"
     };
 
-    const carListGroup: WidgetBase[] = [];
+    const carListGroup: WidgetBaseDesc[] = [];
 
     this.rideTypes.forEach((t: RideType, i: number) => {
       const widgetWidth: number = UiConstants.halfWidthWidget() - 2 * UiConstants.margin;
@@ -69,7 +69,7 @@ export default class MainWindow {
         text: t.name
       });
 
-      carListGroup.push(<SpinnerWidget>{
+      carListGroup.push(<SpinnerDesc>{
         type: "spinner",
         name: `rideTypeWeight${i}`,
         x: carListBox.x + widgetWidth + UiConstants.margin,
@@ -82,7 +82,7 @@ export default class MainWindow {
       });
     });
 
-    const speedBox: GroupBoxWidget = {
+    const speedBox: GroupBoxDesc = {
       type: "groupbox",
       x: UiConstants.margin,
       y: carListBox.y + carListBox.height + UiConstants.margin,
@@ -91,7 +91,7 @@ export default class MainWindow {
       text: "Speed options"
     };
 
-    const speedLabel: LabelWidget = {
+    const speedLabel: LabelDesc = {
       type: "label",
       x: speedBox.x + UiConstants.margin,
       y: speedBox.y + UiConstants.margin * 2,
@@ -100,7 +100,7 @@ export default class MainWindow {
       text: "Speed:"
     };
 
-    const speedSpinner: SpinnerWidget = {
+    const speedSpinner: SpinnerDesc = {
       type: "spinner",
       name: "speedSpinner",
       x: speedBox.x + UiConstants.halfWidthWidget() - 2 * UiConstants.margin * 2,
@@ -112,7 +112,7 @@ export default class MainWindow {
       onDecrement: () => this.updateSpeed(-2)
     };
 
-    const speedVariationLabel: LabelWidget = {
+    const speedVariationLabel: LabelDesc = {
       type: "label",
       x: speedBox.x + UiConstants.margin,
       y: speedLabel.y + UiConstants.widgetLineHeight,
@@ -121,7 +121,7 @@ export default class MainWindow {
       text: "Variation:"
     };
 
-    const speedVariationDropdown: DropdownWidget = {
+    const speedVariationDropdown: DropdownDesc = {
       type: "dropdown",
       x: speedSpinner.x,
       y: speedVariationLabel.y,
@@ -134,7 +134,7 @@ export default class MainWindow {
       }
     };
 
-    const goButton: ButtonWidget = {
+    const goButton: ButtonDesc = {
       type: "button",
       x: UiConstants.margin,
       y: speedBox.y + speedBox.height + UiConstants.margin,
