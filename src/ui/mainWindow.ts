@@ -190,6 +190,7 @@ export default class MainWindow {
   }
 
   private updateWeight(index: number, amount: number): void {
+    if (!this.window) return;
     this.rideTypes[index].weight += amount;
 
     // Clamp
@@ -205,6 +206,7 @@ export default class MainWindow {
   }
 
   private updateSpeed(amount: number): void {
+    if (!this.window) return;
     this.speedMedian += amount;
     this.window.findWidget<SpinnerWidget>("speedSpinner").text = this.speedMedian.toString();
   }

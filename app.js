@@ -1,3 +1,3 @@
-const path = require('path');
+import { resolve } from 'path';
 
-module.exports = path.resolve(__dirname).replace(/\\/g, '/');
+export default resolve(__dirname).replace(/\\/g, '/');

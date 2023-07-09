@@ -1,3 +1,5 @@
+/// <reference path="../lib/openrct2.d.ts" />
+
 import * as Environment from "./environment";
 import * as Log from "./utilities/logger";
 import MainWindow from "./ui/mainWindow";
