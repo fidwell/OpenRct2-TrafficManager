@@ -6,7 +6,7 @@ This is a plugin for OpenRCT2. It will randomize vehicles on a ride to resemble 
 
 ## Usage
 
-This plugin works ideally on a ride that has several trains, each with any number of cars. For example, you might have a parking lot simulated by a car ride with several stationary cars, or moving traffic simulated by moving cars.
+For moving traffic, this plugin works ideally on a ride that has several trains, each with one cars. For parking lots, using one very long train is recommended, as you can then use the [Ride Vehicle Editor](https://openrct2plugins.org/plugin/MDEwOlJlcG9zaXRvcnkzMTI2MjQ1MjY=/OpenRCT2-RideVehicleEditor) to move the cars around.
 
 If you want the colors to properly randomize, set the color dropdown in the ride window to "Different colors per car".
 
