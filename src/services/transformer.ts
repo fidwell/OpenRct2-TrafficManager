@@ -22,11 +22,6 @@ export default class Transformer {
 
     for (let t = 0; t < trains.length; t += 1) {
       const vehicles = trains[t].getVehicles();
-
-      const newPrimaryColour: number = primaryColourRandomizer.getRandomValue();
-      const newSecondaryColour: number = secondaryColourRandomizer.getRandomValue();
-      const newTertiaryColour: number = secondaryColourRandomizer.getRandomValue();
-      const newVehicleType: number = rideRandomizer.getRandomValue();
       const newSpeed: number = NormalRandomizer.getRandomValue(speedMedian, speedVariance);
 
       for (let v = 0; v < vehicles.length; v += 1) {
@@ -34,6 +29,10 @@ export default class Transformer {
         const car: Car = vehicle.getCar();
 
         if (vehicle.shouldColor()) {
+          const newPrimaryColour: number = primaryColourRandomizer.getRandomValue();
+          const newSecondaryColour: number = secondaryColourRandomizer.getRandomValue();
+          const newTertiaryColour: number = secondaryColourRandomizer.getRandomValue();
+
           Transformer.setVehicleColours(car.ride, paintIndex,
             newPrimaryColour,
             newSecondaryColour,
@@ -42,6 +41,7 @@ export default class Transformer {
         }
 
         if (vehicle.shouldRandomizeType()) {
+          const newVehicleType: number = rideRandomizer.getRandomValue();
           if (newVehicleType >= 0) {
             car.rideObject = newVehicleType;
           }
