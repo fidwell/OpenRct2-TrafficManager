@@ -2,7 +2,10 @@ import * as Environment from "../environment";
 import ParkRide from "../objects/parkRide";
 import RideType from "../objects/rideType";
 import Transformer from "../services/transformer";
+import { getRideId } from "../utilities/ridePicker";
 import UiConstants from "./uiConstants";
+
+const pickerToolId = "trafficmanager-ride-picker";
 
 export default class MainWindow {
   onUpdate?: () => void;
@@ -29,9 +32,10 @@ export default class MainWindow {
 
     const ridesList: DropdownDesc = {
       type: "dropdown",
+      name: "rideDropdown",
       x: UiConstants.margin,
       y: UiConstants.toolbarHeight + UiConstants.margin,
-      width: UiConstants.fullWidthWidget(),
+      width: UiConstants.fullWidthWidget() - UiConstants.tabSize - UiConstants.margin,
       height: UiConstants.widgetLineHeight,
       tooltip: "List of rides in the park",
       items: this.ridesInPark.map((r) => (Environment.isDevelopment ? `[${r.rideId}] ${r.name}` : r.name)),
@@ -40,6 +44,18 @@ export default class MainWindow {
           this.selectedRide = this.ridesInPark[i];
         }
       }
+    };
+
+    const ridePicker: ButtonDesc = {
+      type: "button",
+      name: "ridePicker",
+      x: UiConstants.fullWidthWidget() + UiConstants.margin - UiConstants.tabSize,
+      y: UiConstants.toolbarHeight + UiConstants.margin,
+      width: UiConstants.tabSize,
+      height: UiConstants.widgetLineHeight,
+      tooltip: "Select a ride by clicking on it in the park",
+      text: "Pick",
+      onClick: () => this.toggleRidePicker()
     };
 
     this.rideTypes = RideType.getAvailableTypes();
@@ -155,6 +171,7 @@ export default class MainWindow {
       height: goButton.y + goButton.height + UiConstants.margin,
       widgets: [
         ridesList,
+        ridePicker,
         carListBox,
         ...carListGroup,
         speedBox,
@@ -170,6 +187,9 @@ export default class MainWindow {
         }
       },
       onClose: () => {
+        if (ui.tool && ui.tool.id === pickerToolId) {
+          ui.tool.cancel();
+        }
         if (this.onClose) {
           this.onClose();
         }
@@ -189,6 +209,41 @@ export default class MainWindow {
 
   static close(): void {
     ui.closeWindows(Environment.namespace);
+  }
+
+  private toggleRidePicker(): void {
+    if (ui.tool && ui.tool.id === pickerToolId) {
+      ui.tool.cancel();
+      return;
+    }
+    this.activateRidePicker();
+  }
+
+  private activateRidePicker(): void {
+    ui.activateTool({
+      id: pickerToolId,
+      cursor: "cross_hair",
+      onDown: (e) => this.onRidePickerDown(e)
+    });
+  }
+
+  private onRidePickerDown(args: ToolEventArgs): void {
+    const rideId = getRideId(args);
+    if (rideId === undefined) {
+      return;
+    }
+
+    const ride = this.ridesInPark.find((r) => r.rideId === rideId);
+    if (ride) {
+      this.selectedRide = ride;
+      if (this.window) {
+        const displayName = Environment.isDevelopment ? `[${ride.rideId}] ${ride.name}` : ride.name;
+        this.window.findWidget<DropdownWidget>("rideDropdown").text = displayName;
+      }
+      if (ui.tool) {
+        ui.tool.cancel();
+      }
+    }
   }
 
   private updateWeight(index: number, amount: number): void {
