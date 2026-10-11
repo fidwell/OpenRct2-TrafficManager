@@ -16,10 +16,6 @@ export default class RideType {
     this.weight = weight;
   }
 
-  getDefinition(): RideObject {
-    return context.getObject("ride", this.id);
-  }
-
   static getAvailableTypes(): RideType[] {
     return objectManager
       .getAllObjects("ride")

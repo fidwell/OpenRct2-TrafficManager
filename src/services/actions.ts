@@ -25,7 +25,7 @@ export function registerActions(): void {
 
 export function executeRandomizeVehicle(args: RandomizeVehicleArgs): void {
   context.executeAction(ACTION_RANDOMIZE_VEHICLE, args, (result) => {
-    if (result.error !== undefined) {
+    if (result.error !== 0) {
       Log.warning(`Randomize vehicle failed: ${result.errorMessage ?? "Unknown error."}`);
     }
   });

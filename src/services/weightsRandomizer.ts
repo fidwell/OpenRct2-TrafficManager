@@ -16,7 +16,7 @@ export default class WeightsRandomizer {
     }
   }
 
-  getRandomValue(): any {
+  getRandomValue(): number {
     let randomValue = context.getRandom(0, this.weightSum);
 
     for (let i = 0; i < this.items.length; i += 1) {

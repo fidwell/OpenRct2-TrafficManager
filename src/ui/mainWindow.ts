@@ -7,9 +7,15 @@ import UiConstants from "./uiConstants";
 
 const pickerToolId = "trafficManager-ride-picker";
 
-export default class MainWindow {
-  onUpdate?: () => void;
+const savedWeights: Map<string, number> = new Map();
 
+let savedRideId: number | undefined;
+
+let savedSpeedMedian: number = 60;
+
+let savedSpeedVariation: number = 0;
+
+export default class MainWindow {
   onClose?: () => void;
 
   private window?: Window;
@@ -20,14 +26,16 @@ export default class MainWindow {
 
   private rideTypes: RideType[] = [];
 
-  private speedMedian: number = 60;
+  private speedMedian: number = savedSpeedMedian;
 
-  private speedVariation: number = 0;
+  private speedVariation: number = savedSpeedVariation;
 
   private createWindow(): Window {
     this.ridesInPark = ParkRide.getAllRides();
+    const savedRideIndex = this.ridesInPark.findIndex((r) => r.rideId === savedRideId);
+    const selectedRideIndex = savedRideIndex >= 0 ? savedRideIndex : 0;
     if (this.ridesInPark.length > 0) {
-      [this.selectedRide] = this.ridesInPark;
+      this.selectedRide = this.ridesInPark[selectedRideIndex];
     }
 
     const ridesList: DropdownDesc = {
@@ -39,9 +47,11 @@ export default class MainWindow {
       height: UiConstants.widgetLineHeight,
       tooltip: "List of rides in the park",
       items: this.ridesInPark.map((r) => (Environment.isDevelopment ? `[${r.rideId}] ${r.name}` : r.name)),
+      selectedIndex: selectedRideIndex,
       onChange: (i) => {
-        if (this.ridesInPark.length >= i) {
+        if (i < this.ridesInPark.length) {
           this.selectedRide = this.ridesInPark[i];
+          savedRideId = this.ridesInPark[i].rideId;
         }
       }
     };
@@ -59,6 +69,12 @@ export default class MainWindow {
     };
 
     this.rideTypes = RideType.getAvailableTypes();
+    this.rideTypes.forEach((t) => {
+      const saved = savedWeights.get(t.identifier);
+      if (saved !== undefined) {
+        t.weight = saved;
+      }
+    });
 
     const carListBox: GroupBoxDesc = {
       type: "groupbox",
@@ -123,7 +139,7 @@ export default class MainWindow {
       y: speedLabel.y,
       width: UiConstants.halfWidthWidget(),
       height: UiConstants.widgetLineHeight,
-      text: "60",
+      text: this.speedMedian.toString(),
       onIncrement: () => this.updateSpeed(2),
       onDecrement: () => this.updateSpeed(-2)
     };
@@ -145,8 +161,10 @@ export default class MainWindow {
       height: UiConstants.widgetLineHeight,
       tooltip: "Variation in randomized speeds",
       items: ["None", "A little bit", "Some", "A lot"],
+      selectedIndex: this.speedVariation,
       onChange: (i) => {
         this.speedVariation = i;
+        savedSpeedVariation = i;
       }
     };
 
@@ -181,11 +199,6 @@ export default class MainWindow {
         speedVariationDropdown,
         goButton
       ],
-      onUpdate: () => {
-        if (this.onUpdate) {
-          this.onUpdate();
-        }
-      },
       onClose: () => {
         if (ui.tool && ui.tool.id === pickerToolId) {
           ui.tool.cancel();
@@ -236,6 +249,7 @@ export default class MainWindow {
     const ride = this.ridesInPark.find((r) => r.rideId === rideId);
     if (ride) {
       this.selectedRide = ride;
+      savedRideId = ride.rideId;
       if (this.window) {
         const displayName = Environment.isDevelopment ? `[${ride.rideId}] ${ride.name}` : ride.name;
         this.window.findWidget<DropdownWidget>("rideDropdown").text = displayName;
@@ -248,23 +262,25 @@ export default class MainWindow {
 
   private updateWeight(index: number, amount: number): void {
     if (!this.window) return;
-    this.rideTypes[index].weight += amount;
+    const rideType = this.rideTypes[index];
+    rideType.weight += amount;
 
     // Clamp
-    if (this.rideTypes[index].weight < 0) {
-      this.rideTypes[index].weight = 0;
+    if (rideType.weight < 0) {
+      rideType.weight = 0;
+    }
+    if (rideType.weight > 255) {
+      rideType.weight = 255;
     }
 
-    if (this.rideTypes[index].weight > 255) {
-      this.rideTypes[index].weight = 255;
-    }
-
-    this.window.findWidget<SpinnerWidget>(`rideTypeWeight${index}`).text = this.rideTypes[index].weight.toString();
+    savedWeights.set(rideType.identifier, rideType.weight);
+    this.window.findWidget<SpinnerWidget>(`rideTypeWeight${index}`).text = rideType.weight.toString();
   }
 
   private updateSpeed(amount: number): void {
     if (!this.window) return;
     this.speedMedian += amount;
+    savedSpeedMedian = this.speedMedian;
     this.window.findWidget<SpinnerWidget>("speedSpinner").text = this.speedMedian.toString();
   }
 }

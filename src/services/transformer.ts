@@ -34,11 +34,7 @@ export default class Transformer {
           const newSecondaryColour: number = secondaryColourRandomizer.getRandomValue();
           const newTertiaryColour: number = secondaryColourRandomizer.getRandomValue();
 
-          Transformer.setVehicleColours(car.ride, paintIndex,
-            newPrimaryColour,
-            newSecondaryColour,
-            newTertiaryColour);
-          paintIndex += 1;
+          Transformer.setVehicleColours(car.ride, paintIndex, newPrimaryColour, newSecondaryColour, newTertiaryColour);
         }
 
         if (vehicle.shouldRandomizeType()) {
@@ -51,6 +47,8 @@ export default class Transformer {
         if (vehicle.shouldRandomizeSpeed()) {
           executeRandomizeVehicle({ entityId: vehicle.entityId, poweredMaxSpeed: newSpeed });
         }
+
+        paintIndex += 1;
       }
     }
   }
