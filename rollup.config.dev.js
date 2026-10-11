@@ -1,11 +1,16 @@
+import path from "path";
 import replace from "@rollup/plugin-replace";
 import typescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
 
+const outputDir =
+  process.env.OPENRCT2_PLUGIN_PATH ||
+  path.join(process.env.USERPROFILE || "C:", "Documents", "OpenRCT2", "plugin");
+
 export default {
   input: "./src/registerPlugin.ts",
   output: {
-    file: "",
+    file: path.join(outputDir, "TrafficManager.js"),
     format: "iife",
   },
   plugins: [
