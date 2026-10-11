@@ -1,8 +1,8 @@
 import * as Environment from "../environment";
 import ParkRide from "../objects/parkRide";
+import RideType from "../objects/rideType";
 import Transformer from "../services/transformer";
 import UiConstants from "./uiConstants";
-import RideType from "../objects/rideType";
 
 export default class MainWindow {
   onUpdate?: () => void;
@@ -11,11 +11,11 @@ export default class MainWindow {
 
   private window?: Window;
 
-  private ridesInPark: ParkRide[];
+  private ridesInPark: ParkRide[] = [];
 
-  private selectedRide: ParkRide;
+  private selectedRide: ParkRide | undefined = undefined;
 
-  private rideTypes: RideType[];
+  private rideTypes: RideType[] = [];
 
   private speedMedian: number = 60;
 
@@ -142,7 +142,9 @@ export default class MainWindow {
       height: UiConstants.widgetLineHeight * 2,
       text: "Go",
       onClick: () => {
-        Transformer.go(this.selectedRide, this.rideTypes, this.speedMedian, this.speedVariation);
+        if (this.selectedRide) {
+          Transformer.go(this.selectedRide, this.rideTypes, this.speedMedian, this.speedVariation);
+        }
       }
     };
 

@@ -21,7 +21,7 @@ export default class RideType {
   }
 
   static getAvailableTypes(): RideType[] {
-    return context
+    return objectManager
       .getAllObjects("ride")
       .map((r) => {
         const matchingRideTypes = this.weightMap.filter((m) => m[0] === r.identifier);
@@ -36,7 +36,7 @@ export default class RideType {
       .map((r) => r as RideType);
   }
 
-  static weightMap: object[] = [
+  static weightMap: [string, number][] = [
     ["rct2.ride.4x4", 6], // Monster Trucks
     ["rct2.ride.monbk", 1], // Bicycles
     ["rct2.ride.rcr", 4], // Racing Cars
