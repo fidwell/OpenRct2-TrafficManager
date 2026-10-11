@@ -8,7 +8,7 @@ export default class ColourMap {
     new WeightDictionary(Colour.Black, 79),
     new WeightDictionary(Colour.SaturatedRed, 23),
     new WeightDictionary(Colour.BrightRed, 22),
-    new WeightDictionary(Colour.BrightRed, 22),
+    new WeightDictionary(Colour.BordeauxRed, 22),
     new WeightDictionary(Colour.LightBlue, 35),
     new WeightDictionary(Colour.DarkBlue, 30),
     new WeightDictionary(Colour.DarkBrown, 39),

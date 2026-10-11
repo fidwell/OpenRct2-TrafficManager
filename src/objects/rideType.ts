@@ -32,8 +32,7 @@ export default class RideType {
         }
         return null;
       })
-      .filter((r) => r !== null && r.weight > 0)
-      .map((r) => r as RideType);
+      .filter((r): r is RideType => r !== null && r.weight > 0);
   }
 
   static weightMap: [string, number][] = [

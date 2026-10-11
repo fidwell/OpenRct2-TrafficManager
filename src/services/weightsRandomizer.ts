@@ -1,5 +1,5 @@
-import * as Log from "../utilities/logger";
 import WeightDictionary from "../objects/weightDictionary";
+import * as Log from "../utilities/logger";
 
 export default class WeightsRandomizer {
   private readonly weightSum: number;
@@ -7,7 +7,7 @@ export default class WeightsRandomizer {
   public readonly canRandomize: boolean;
 
   constructor(readonly items: WeightDictionary[]) {
-    this.weightSum = items.map((a) => a.weight).reduce((a, b) => a + b);
+    this.weightSum = items.reduce((a, b) => a + b.weight, 0);
     this.canRandomize = this.weightSum > 0;
 
     if (!this.canRandomize) {

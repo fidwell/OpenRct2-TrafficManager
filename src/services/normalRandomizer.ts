@@ -9,6 +9,6 @@ export default class NormalRandomizer {
   private static getRandom(): number {
     // OpenRCT2's RNG is integer-only; this
     // method converts it to a number in (0,1).
-    return context.getRandom(0, 1000) / 1000;
+    return context.getRandom(1, 1000) / 1000;
   }
 }

@@ -33,7 +33,7 @@ export function executeRandomizeVehicle(args: RandomizeVehicleArgs): void {
 
 function validateRandomizeVehicle(args: RandomizeVehicleArgs): GameActionResult {
   const car = map.getEntity(args.entityId) as Car;
-  if (!car) {
+  if (!car || car.type !== "car") {
     return {
       error: 2,
       errorTitle: "Car not found",
@@ -44,7 +44,11 @@ function validateRandomizeVehicle(args: RandomizeVehicleArgs): GameActionResult 
 }
 
 function randomizeVehicle(args: RandomizeVehicleArgs): void {
-  const car = map.getEntity(args.entityId) as Car;
+  const car = map.getEntity(args.entityId) as (Car | null);
+  if (!car || car.type !== "car") {
+    return;
+  }
+
   if (args.rideObject !== undefined) {
     car.rideObject = args.rideObject;
   }

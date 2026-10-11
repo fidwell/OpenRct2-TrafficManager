@@ -5,7 +5,7 @@ import Transformer from "../services/transformer";
 import { getRideId } from "../utilities/ridePicker";
 import UiConstants from "./uiConstants";
 
-const pickerToolId = "trafficmanager-ride-picker";
+const pickerToolId = "trafficManager-ride-picker";
 
 export default class MainWindow {
   onUpdate?: () => void;
