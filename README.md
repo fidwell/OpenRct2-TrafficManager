@@ -49,6 +49,7 @@ Please submit any ideas under [issues](https://github.com/fidwell/OpenRct2-Traff
 - **Version 1**: Randomizes vehicles based on a hard-coded list of vehicle types and weights.
 - **Version 2**: Allows the user to select their own weights, if they (for example) prefer a lot of pickup trucks.
 - **Version 3**: Randomizes the speed of powered vehicles, for moving traffic.
+- **Version 4**: Updated to work in multiplayer (with game actions).
 
 ### Features in consideration
 

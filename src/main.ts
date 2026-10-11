@@ -1,4 +1,5 @@
 import * as Environment from "./environment";
+import { registerActions } from "./services/actions";
 import MainWindow from "./ui/mainWindow";
 import * as Log from "./utilities/logger";
 
@@ -27,6 +28,7 @@ const main = (): void => {
     return;
   }
 
+  registerActions();
   ui.registerMenuItem(Environment.pluginName, () => openWindow());
 };
 

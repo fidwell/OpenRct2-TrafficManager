@@ -1,10 +1,11 @@
+import { RideSetAppearanceType } from "../enums/rideSetAppearanceType";
 import ParkRide from "../objects/parkRide";
 import RideType from "../objects/rideType";
-import WeightsRandomizer from "./weightsRandomizer";
 import WeightDictionary from "../objects/weightDictionary";
+import { executeRandomizeVehicle } from "./actions";
 import ColourMap from "./colourMap";
-import { RideSetAppearanceType } from "../enums/rideSetAppearanceType";
 import NormalRandomizer from "./normalRandomizer";
+import WeightsRandomizer from "./weightsRandomizer";
 
 export default class Transformer {
   static go(ride: ParkRide, rideTypes: RideType[], speedMedian: number, speedVariance: number): void {
@@ -43,12 +44,12 @@ export default class Transformer {
         if (vehicle.shouldRandomizeType()) {
           const newVehicleType: number = rideRandomizer.getRandomValue();
           if (newVehicleType >= 0) {
-            car.rideObject = newVehicleType;
+            executeRandomizeVehicle({ entityId: vehicle.entityId, rideObject: newVehicleType });
           }
         }
 
         if (vehicle.shouldRandomizeSpeed()) {
-          car.poweredMaxSpeed = newSpeed;
+          executeRandomizeVehicle({ entityId: vehicle.entityId, poweredMaxSpeed: newSpeed });
         }
       }
     }
