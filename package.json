@@ -2,6 +2,7 @@
   "name": "openrct2-TrafficManager",
   "version": "4.0.0",
   "description": "Randomizes vehicle types, colours, and speeds on rides to create realistic traffic in OpenRCT2.",
+  "main": "app.js",
   "scripts": {
     "start": "npm run watch",
     "watch": "nodemon --watch ./src --ext js,ts",
