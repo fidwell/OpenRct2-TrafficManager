@@ -5,7 +5,7 @@ registerPlugin({
   name: Environment.pluginName,
   version: Environment.pluginVersion,
   authors: Environment.pluginAuthors,
-  type: "local",
+  type: "remote",
   licence: "MIT",
   targetApiVersion: 70,
   main
